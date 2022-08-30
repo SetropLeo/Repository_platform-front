@@ -36,6 +36,7 @@ export const MainPage = () => {
 
   useEffect(() => {
     (async () => await loadRepositories())();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogout = () => {
