@@ -1,5 +1,10 @@
 import { api } from './configs';
 
+export const createSession = async (email, password) => {
+  let url = `/sessions`;
+  return api.post(url, { email, password });
+};
+
 export const getRepositories = async (userId, query) => {
   let url = `/users/${userId}/repositories/`;
 

@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { AuthContext } from '../../contexts/auth';
+
 import './styles.css';
 
 const LoginPage = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const { login } = useContext(AuthContext);
 
-  const handleLogin = () => {
-    console.log('email', email);
-    console.log('password', password);
+  const handleLogin = async () => {
+    login(email, password);
   };
 
   return (
