@@ -6,7 +6,11 @@ import RepoList from './RepoList/RepoList';
 import CreateRepo from './CreateRepo/CreateRepo';
 import Search from './SearchRepo/Search';
 
-import { getRepositories, createRepository } from '../../services/api';
+import {
+  getRepositories,
+  createRepository,
+  destroyRepository,
+} from '../../services/api';
 
 import './styles.css';
 
@@ -37,11 +41,12 @@ export const MainPage = () => {
   };
 
   const handleSearch = (query) => {
-    console.log('query', query);
+    loadRepositories(query);
   };
 
-  const handleDeleteRepo = (repository) => {
-    console.log('delete repo', repository);
+  const handleDeleteRepo = async (repository) => {
+    await destroyRepository(repository.userId, repository._id);
+    await loadRepositories();
   };
 
   const handleAddRepo = async (url) => {

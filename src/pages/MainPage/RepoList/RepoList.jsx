@@ -18,7 +18,7 @@ const RepoList = ({ repositories, onDelete }) => {
             <div className="owner">{filterName(repository.name)}</div>
             <div className="name">{filterOwner(repository.name)}</div>
           </div>
-          <button onClick={() => onDelete(null)}>Apagar</button>
+          <button onClick={() => onDelete(repository)}>Apagar</button>
         </li>
       ))}
     </ul>
