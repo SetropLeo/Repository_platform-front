@@ -18,6 +18,7 @@ export const MainPage = () => {
   const [repositories, setRepositories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingError, setLoadingError] = useState(false);
+  const savedInputValue = localStorage.getItem('queryValue') ?? '';
   const userId = '62c22ca11d5eb96549c92df5';
 
   const loadRepositories = async (query = '') => {
@@ -33,14 +34,15 @@ export const MainPage = () => {
   };
 
   useEffect(() => {
-    (async () => await loadRepositories())();
-  }, []);
+    (async () => await loadRepositories(savedInputValue))();
+  }, [savedInputValue]);
 
   const handleLogout = () => {
     console.log('logout');
   };
 
   const handleSearch = (query) => {
+    localStorage.setItem('queryValue', query);
     loadRepositories(query);
   };
 
