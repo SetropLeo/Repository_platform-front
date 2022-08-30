@@ -1,19 +1,9 @@
 import React from 'react';
-import { useEffect } from 'react';
 
 const Search = ({ onSearch }) => {
   const [query, setQuery] = React.useState('');
 
-  useEffect(() => {
-    setQuery(localStorage.getItem('queryValue'));
-  }, []);
-
-  const onInputChange = (e) => {
-    setQuery(e.target.value);
-  };
-
   const handleClear = () => {
-    localStorage.setItem('queryValue', '');
     onSearch('');
   };
 
@@ -25,7 +15,7 @@ const Search = ({ onSearch }) => {
         name="query"
         id="query"
         value={query}
-        onChange={(e) => onInputChange(e)}
+        onChange={(e) => setQuery(e.target.value)}
       />
       <button onClick={handleClear}>Limpar</button>
       <button onClick={() => onSearch(query)}>Procurar</button>
